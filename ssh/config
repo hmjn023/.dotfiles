@@ -1,0 +1,5 @@
+Host github github.com
+	HostName ssh.github.com
+	IdentityFile ~/.ssh/github
+	User git
+	Port 443
