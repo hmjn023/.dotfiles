@@ -1,1 +1,2 @@
-# hmjn dotfiles
+hmjn's dotfiles
+
