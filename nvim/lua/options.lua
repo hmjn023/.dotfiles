@@ -6,12 +6,29 @@ vim.opt.mouse="a"
 vim.opt.splitright= true
 vim.opt.completeopt = "menuone,noinsert"
 vim.opt.pumblend=5
+vim.opt.cursorline = true
 
 vim.api.nvim_set_var('airline#extensions#tabline#enabled',1)
 vim.api.nvim_set_var('airline_powerline_fonts',1)
 vim.api.nvim_set_var('airline#extensions#tabline#enabled',1)
 
-require('telescope').load_extension('media_files')
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+require "lsp_signature".setup({
+    bind = true, -- This is mandatory, otherwise border config won't get registered.
+    handler_opts = {
+      border = "rounded"
+    }
+ })
+
+
 require'telescope'.setup {
   extensions = {
     media_files = {
@@ -22,12 +39,15 @@ require'telescope'.setup {
     }
   },
 }
+require('telescope').load_extension('media_files')
+
 
 local sidebar = require("sidebar-nvim")
 local opts = {open = false, initial_width = 20}
 sidebar.setup(opts)
 
 require("nvim-autopairs").setup{}
+require'toggleterm'.setup{}
 require'nvim-treesitter.configs'.setup{
 	autotag = {
 		enable = true,

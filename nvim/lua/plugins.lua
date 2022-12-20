@@ -15,6 +15,7 @@ require'packer'.startup(function()
 	use'onsails/lspkind.nvim'
 	use'hrsh7th/cmp-nvim-lsp'
 	use'hrsh7th/vim-vsnip'
+	use'nvim-lua/popup.nvim'
 	use'nvim-lua/plenary.nvim'
 	use'nvim-telescope/telescope.nvim' tag = '0.1.0'
 	use'nvim-telescope/telescope-frecency.nvim'
@@ -25,6 +26,10 @@ require'packer'.startup(function()
 	use'windwp/nvim-autopairs'
 	use'windwp/nvim-ts-autotag'
 	use'nvim-treesitter/nvim-treesitter'
+	
+	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+		require("toggleterm").setup()
+	end}
 
 	vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 	use{
@@ -52,20 +57,5 @@ require'packer'.startup(function()
 	})
 end)
 
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
-require "lsp_signature".setup({
-    bind = true, -- This is mandatory, otherwise border config won't get registered.
-    handler_opts = {
-      border = "rounded"
-    }
-    })
 
 vim.cmd("colorscheme nightfox")
