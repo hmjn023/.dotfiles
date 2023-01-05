@@ -1,5 +1,7 @@
 autoload -Uz compinit && compinit
+
 eval "$(starship init zsh)"
+source $HOME/.dotfiles/zsh-autosuggestions/zsh-autosuggestions.zsh
 # variables
 ## history
 HISTFILE=$HOME/.history
@@ -10,6 +12,7 @@ setopt extended_history
 export PATH=/var/lib/snapd/snap/bin:$PATH
 export PATH=/home/hmjn/.local/bin:$PATH
 export PATH=$HOME/Android/Sdk/platform-tools:$PATH
+export GOPATH=$HOME/go
 # ranger
 export VISUAL=nvim
 export EDITOR=nvim

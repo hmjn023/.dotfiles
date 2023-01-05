@@ -66,17 +66,17 @@ require'lspconfig'.sumneko_lua.setup {
 }
 
 
-vim.cmd [[
-set updatetime=500
-highlight LspReferenceText  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#A00000 guibg=#104040
-highlight LspReferenceRead  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#A00000 guibg=#104040
-highlight LspReferenceWrite cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#A00000 guibg=#104040
-augroup lsp_document_highlight
-  autocmd!
-  autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
-  autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
-augroup END
-]]
+--vim.cmd [[
+--set updatetime=500
+--highlight LspReferenceText  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#A00000 guibg=#104040
+--highlight LspReferenceRead  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#A00000 guibg=#104040
+--highlight LspReferenceWrite cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#A00000 guibg=#104040
+--augroup lsp_document_highlight
+--  autocmd!
+--  autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
+--  autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
+--augroup END
+--]]
 
 local cmp = require("cmp")
 cmp.setup({
@@ -114,3 +114,21 @@ cmp.setup({
 --     { name = "cmdline" },
 --   },
 -- })
+
+
+  local gid = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+  vim.api.nvim_create_autocmd("CursorHold" , {
+    group = gid,
+    buffer = bufnr,
+    callback = function ()
+      vim.lsp.buf.document_highlight()
+    end
+  })
+
+  vim.api.nvim_create_autocmd("CursorMoved" , {
+    group = gid,
+    buffer = bufnr,
+    callback = function ()
+      vim.lsp.buf.clear_references()
+    end
+  })
