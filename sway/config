@@ -5,6 +5,7 @@ set $down j
 set $up k
 set $right l
 set $term kitty
+set $term2 wezterm
 set $menu exec wofi --show drun -I
 
 exec fcitx5
@@ -70,6 +71,7 @@ output DP-3 scale 1  position 1920,0
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+	 bindsym $mod+t exec $term2
 
     # Kill focused window
     bindsym $mod+Shift+q kill
