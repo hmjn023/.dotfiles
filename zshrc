@@ -13,6 +13,8 @@ export PATH=/var/lib/snapd/snap/bin:$PATH
 export PATH=/home/hmjn/.local/bin:$PATH
 export PATH=$HOME/Android/Sdk/platform-tools:$PATH
 export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+export ANDROID_HOME=$HOME/Android/Sdk
 # ranger
 export VISUAL=nvim
 export EDITOR=nvim
