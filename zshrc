@@ -12,14 +12,20 @@ setopt extended_history
 export PATH=/var/lib/snapd/snap/bin:$PATH
 export PATH=/home/hmjn/.local/bin:$PATH
 export PATH=$HOME/Android/Sdk/platform-tools:$PATH
+export PATH=$HOME/flutter/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 export ANDROID_HOME=$HOME/Android/Sdk
+export CHROME_EXECUTABLE=$(which google-chrome-stable)
+export CARGO_HOME=$HOME/.cargo
+export PATH=$CARGO_HOME/bin:$PATH
 # ranger
 export VISUAL=nvim
 export EDITOR=nvim
 
 export MAKEFLAGS="-j $(nproc --all)"
+export VCPKG_ROOT=/opt/vcpkg
+export VCPKG_DOWNLOADS=/var/cache/vcpkg
 # ailias
 alias vi=nvim
 ## ls

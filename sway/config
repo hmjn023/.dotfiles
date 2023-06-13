@@ -213,6 +213,8 @@ bindsym $mod+shift+s exec grim -g "$(slurp)"
 
 # btop
 bindsym ctrl+shift+escape exec kitty btop
+# iwctl
+bindsym $mod+shift+t exec $term2 start -- iwctl
 
 for_window [class=".*"] inhibit_idle fullscreen
 for_window [app_id=".*"] inhibit_idle fullscreen

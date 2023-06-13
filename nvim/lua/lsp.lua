@@ -30,6 +30,8 @@ require'lspconfig'.gopls.setup{}
 require'lspconfig'.clangd.setup{}
 require'lspconfig'.kotlin_language_server.setup{}
 require'lspconfig'.ltex.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.taplo.setup{}
 --require'lspconfig'.omnisharp.setup{
 --	cmd = {"/home/hmjn/.local/share/nvim/mason/bin/omnisharp","-lsp"},
 --	enable_editorconfig_support = true,
@@ -41,9 +43,11 @@ require'lspconfig'.ltex.setup{}
 --   analyze_open_documents_only = false,
 --	on_attach = on_attach,
 --}
-require'csharp_ls'.csharp_ls.setup{}
 require'lspconfig'.rust_analyzer.setup{
-	on_attach = on_attach,
+	--on_attach = on_attach,
+	settings = {
+    ['rust-analyzer'] = {},
+  },
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
