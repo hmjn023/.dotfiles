@@ -8,9 +8,9 @@ vim.opt.completeopt = "menuone,noinsert"
 vim.opt.pumblend=5
 vim.opt.cursorline = true
 
-vim.api.nvim_set_var('airline#extensions#tabline#enabled',1)
-vim.api.nvim_set_var('airline_powerline_fonts',1)
-vim.api.nvim_set_var('airline#extensions#tabline#enabled',1)
+--vim.api.nvim_set_var('airline#extensions#tabline#enabled',1)
+--vim.api.nvim_set_var('airline_powerline_fonts',1)
+--vim.api.nvim_set_var('airline#extensions#tabline#enabled',1)
 
 require("mason").setup({
     ui = {
@@ -53,15 +53,11 @@ require'nvim-treesitter.configs'.setup{
 		enable = true,
 	}
 }
-require'nvim-treesitter.configs'.setup{
-	matchup = {
-   enable = true,              -- mandatory, false will disable the whole extension
-   disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-	},
-}
 require('aerial').setup({
 	on_attach = function(bufnr)
 		vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', {buffer = bufnr})
 		vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', {buffer = bufnr})
 	end
 })
+
+require("lualine").setup()

@@ -1,8 +1,6 @@
 vim.cmd[[packadd packer.nvim]]
 
 require'packer'.startup(function()
-	use'vim-airline/vim-airline'
-	use'vim-airline/vim-airline-themes'
 	use'ryanoasis/vim-devicons'
 	use'tpope/vim-commentary'
 	use'preservim/nerdtree'
@@ -26,6 +24,7 @@ require'packer'.startup(function()
 	use'windwp/nvim-autopairs'
 	use'windwp/nvim-ts-autotag'
 	use'nvim-treesitter/nvim-treesitter'
+	use'nvim-lualine/lualine.nvim' opt=true
 	
 	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
 		require("toggleterm").setup()
