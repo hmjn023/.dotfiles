@@ -29,7 +29,7 @@ export VCPKG_DOWNLOADS=/var/cache/vcpkg
 # ailias
 alias vi=nvim
 ## ls
-alias ls=ls_extended
+#alias ls=ls_extended
 alias la="ls -a"
 alias ll="ls -ls"
 alias lh="ls -lh"

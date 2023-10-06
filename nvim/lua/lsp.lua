@@ -33,6 +33,8 @@ require'lspconfig'.ltex.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.taplo.setup{}
 require'lspconfig'.zk.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.tailwindcss.setup{}
 --require'lspconfig'.omnisharp.setup{
 --	cmd = {"/home/hmjn/.local/share/nvim/mason/bin/omnisharp","-lsp"},
 --	enable_editorconfig_support = true,
