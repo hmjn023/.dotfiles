@@ -17,3 +17,6 @@ map('n','<C-h>',':bprev<CR>')
 map('n','<Leader>ss',':vsplit<CR>')
 map('n','<Leader>a',':AerialToggle!<CR>')
 map('n','<C-t>',':ToggleTerm<CR>')
+
+map('n','<Leader>f','Format<CR>')
+map('n','<Leader>F','FormatWrite<CR>')

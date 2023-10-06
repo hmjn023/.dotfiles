@@ -24,8 +24,8 @@ require'packer'.startup(function()
 	use'windwp/nvim-autopairs'
 	use'windwp/nvim-ts-autotag'
 	use'nvim-treesitter/nvim-treesitter'
+	use'mhartington/formatter.nvim'
 	use'nvim-lualine/lualine.nvim' opt=true
-	
 	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
 		require("toggleterm").setup()
 	end}
@@ -55,6 +55,7 @@ require'packer'.startup(function()
 		run = function() vim.fn["mkdp#util#install"]() end,
 	})
 end)
+
 
 
 vim.cmd("colorscheme nightfox")

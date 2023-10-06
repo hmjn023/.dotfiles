@@ -8,10 +8,6 @@ vim.opt.completeopt = "menuone,noinsert"
 vim.opt.pumblend=5
 vim.opt.cursorline = true
 
---vim.api.nvim_set_var('airline#extensions#tabline#enabled',1)
---vim.api.nvim_set_var('airline_powerline_fonts',1)
---vim.api.nvim_set_var('airline#extensions#tabline#enabled',1)
-
 require("mason").setup({
     ui = {
         icons = {
@@ -21,15 +17,40 @@ require("mason").setup({
         }
     }
 })
-require "lsp_signature".setup({
+require("lsp_signature").setup({
     bind = true, -- This is mandatory, otherwise border config won't get registered.
     handler_opts = {
       border = "rounded"
     }
  })
 
+require("nvim-treesitter.configs").setup({
+	highlight = {
+		enable = true,
+	    disable = {},
+	},
+	indent = {
+		enable = true,
+    	disable = {},
+	},
+	ensure_installed = {
+		"tsx",
+    	"toml",
+		"fish",
+		"php",
+		"json",
+		"yaml",
+		"swift",
+		"css",
+		"html",
+		"lua"
+	},
+	autotag = {
+		enable = true,
+	},
+})
 
-require'telescope'.setup {
+require("telescope").setup {
   extensions = {
     media_files = {
       -- filetypes whitelist
@@ -39,7 +60,7 @@ require'telescope'.setup {
     }
   },
 }
-require('telescope').load_extension('media_files')
+require("telescope").load_extension('media_files')
 
 
 local sidebar = require("sidebar-nvim")
@@ -47,13 +68,8 @@ local opts = {open = false, initial_width = 20}
 sidebar.setup(opts)
 
 require("nvim-autopairs").setup{}
-require'toggleterm'.setup{}
-require'nvim-treesitter.configs'.setup{
-	autotag = {
-		enable = true,
-	}
-}
-require('aerial').setup({
+require("toggleterm").setup{}
+require("aerial").setup({
 	on_attach = function(bufnr)
 		vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', {buffer = bufnr})
 		vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', {buffer = bufnr})
@@ -61,3 +77,4 @@ require('aerial').setup({
 })
 
 require("lualine").setup()
+require("formatter").setup{}
