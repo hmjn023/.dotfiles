@@ -17,6 +17,10 @@ require("mason").setup({
 		},
 	},
 })
+
+require("mason-lspconfig").setup({
+	automatic_installation = true,
+})
 require("lsp_signature").setup({
 	bind = true, -- This is mandatory, otherwise border config won't get registered.
 	handler_opts = {
@@ -33,6 +37,8 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		disable = {},
 	},
+	sync_install = false,
+	auto_install = true,
 	ensure_installed = {
 		"tsx",
 		"toml",
@@ -46,6 +52,8 @@ require("nvim-treesitter.configs").setup({
 		"lua",
 		"bash",
 	},
+	ignore_install = {},
+	modules = {},
 	autotag = {
 		enable = true,
 	},
@@ -54,8 +62,6 @@ require("nvim-treesitter.configs").setup({
 require("telescope").setup({
 	extensions = {
 		media_files = {
-			-- filetypes whitelist
-			-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
 			filetypes = { "png", "webp", "jpg", "jpeg" },
 			find_cmd = "rg", -- find command (defaults to `fd`)
 		},
@@ -82,13 +88,34 @@ local format_on_save = require("format-on-save")
 local formatters = require("format-on-save.formatters")
 require("format-on-save").setup({
 	formatter_by_ft = {
-		css = formatters.lsp,
-		html = formatters.lsp,
+		css = formatters.prettierd,
+		html = formatters.prettierd,
 		javascript = formatters.lsp,
 		lua = formatters.stylua,
 		rust = formatters.lsp,
 		typescript = formatters.prettierd,
 		typescriptreact = formatters.prettierd,
 		python = formatters.black,
+		json = formatters.jq,
+	},
+})
+
+require("image_preview").setup()
+
+require("neo-tree").setup({
+	filesystem = {
+		window = {
+			mappings = {
+				["<leader>p"] = "image_wezterm", -- " or another map
+			},
+		},
+		commands = {
+			image_wezterm = function(state)
+				local node = state.tree:get_node()
+				if node.type == "file" then
+					require("image_preview").PreviewImage(node.path)
+				end
+			end,
+		},
 	},
 })

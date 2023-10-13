@@ -28,6 +28,7 @@ require("packer").startup(function()
 	use("nvim-treesitter/nvim-treesitter")
 	use("elentok/format-on-save.nvim")
 	use("nvim-lualine/lualine.nvim")
+	use("adelarsq/image_preview.nvim")
 	opt = true
 	use({
 		"akinsho/toggleterm.nvim",
