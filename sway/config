@@ -12,6 +12,8 @@ exec fcitx5
 exec waybar
 exec mako
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 
 # keyboard
 input "type:keyboard" {

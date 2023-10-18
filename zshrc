@@ -29,7 +29,7 @@ export VCPKG_DOWNLOADS=/var/cache/vcpkg
 # ailias
 alias vi=nvim
 ## ls
-alias ls=ls_extended
+alias ls=lsd
 alias la="ls -a"
 alias ll="ls -ls"
 alias lh="ls -lh"
@@ -74,3 +74,8 @@ fi
 
 bindkey "^I" menu-expand-or-complete
 . $HOME/.dotfiles/zsh-romaji-complete/zsh-romaji-complete.plugin.zsh
+
+eval "$(zoxide init zsh)"
+eval "$(mcfly init zsh)"
+
+source /home/hmjn/.config/broot/launcher/bash/br

@@ -97,6 +97,7 @@ require("format-on-save").setup({
 		typescriptreact = formatters.prettierd,
 		python = formatters.black,
 		json = formatters.jq,
+		c = formatters.lsp,
 	},
 })
 
