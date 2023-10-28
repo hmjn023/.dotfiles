@@ -29,6 +29,7 @@ require("packer").startup(function()
 	use("elentok/format-on-save.nvim")
 	use("nvim-lualine/lualine.nvim")
 	use("adelarsq/image_preview.nvim")
+	use("xiyaowong/link-visitor.nvim")
 	opt = true
 	use({
 		"akinsho/toggleterm.nvim",

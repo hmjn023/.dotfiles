@@ -38,7 +38,7 @@ require("lspconfig").zk.setup({})
 require("lspconfig").tsserver.setup({})
 require("lspconfig").cssls.setup({})
 require("lspconfig").tailwindcss.setup({})
---require'lspconfig'.omnisharp.setup{
+-- require'lspconfig'.omnisharp.setup{
 --	cmd = {"/home/hmjn/.local/share/nvim/mason/bin/omnisharp","-lsp"},
 --	enable_editorconfig_support = true,
 --   enable_ms_build_load_projects_on_demand = false,
