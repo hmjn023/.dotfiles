@@ -27,17 +27,47 @@ local on_attach = function(client, bufnr)
 	end, bufopts)
 end
 
-require("lspconfig").pyright.setup({})
-require("lspconfig").gopls.setup({})
-require("lspconfig").clangd.setup({})
-require("lspconfig").kotlin_language_server.setup({})
-require("lspconfig").ltex.setup({})
-require("lspconfig").tsserver.setup({})
-require("lspconfig").taplo.setup({})
-require("lspconfig").zk.setup({})
-require("lspconfig").tsserver.setup({})
-require("lspconfig").cssls.setup({})
-require("lspconfig").tailwindcss.setup({})
+local cmp = require("cmp")
+cmp.setup({
+	snippet = {
+		expand = function(args)
+			vim.fn["vsnip#anonymous"](args.body)
+		end,
+	},
+	sources = {
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "path" },
+		{ name = "buffer" },
+		{ name = "nvim_lua" },
+		{ name = "luasnip" },
+		{ name = "cmdline" },
+		{ name = "git" },
+	},
+	mapping = cmp.mapping.preset.insert({
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		["<C-l>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.abort(),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+	}),
+	experimental = {
+		ghost_text = true,
+	},
+})
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+require("lspconfig").pyright.setup({ capabilities = capabilities })
+require("lspconfig").gopls.setup({ capabilities = capabilities })
+require("lspconfig").clangd.setup({ capabilities = capabilities })
+require("lspconfig").kotlin_language_server.setup({ capabilities = capabilities })
+require("lspconfig").ltex.setup({ capabilities = capabilities })
+require("lspconfig").tsserver.setup({ capabilities = capabilities })
+require("lspconfig").taplo.setup({ capabilities = capabilities })
+require("lspconfig").zk.setup({ capabilities = capabilities })
+require("lspconfig").tsserver.setup({ capabilities = capabilities })
+require("lspconfig").cssls.setup({ capabilities = capabilities })
+require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
 -- require'lspconfig'.omnisharp.setup{
 --	cmd = {"/home/hmjn/.local/share/nvim/mason/bin/omnisharp","-lsp"},
 --	enable_editorconfig_support = true,
@@ -56,11 +86,12 @@ require("lspconfig").rust_analyzer.setup({
 	},
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+--local capabilities = vim.lsp.protocol.make_client_capabilities()
+--capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("lspconfig").html.setup({ capabilities = capabilities })
 
 require("lspconfig").lua_ls.setup({
+	capabilities = capabilities,
 	settings = {
 		Lua = {
 			runtime = {
@@ -76,28 +107,6 @@ require("lspconfig").lua_ls.setup({
 				enable = false,
 			},
 		},
-	},
-})
-
-local cmp = require("cmp")
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
-		end,
-	},
-	sources = {
-		{ name = "nvim_lsp" },
-	},
-	mapping = cmp.mapping.preset.insert({
-		["<C-p>"] = cmp.mapping.select_prev_item(),
-		["<C-n>"] = cmp.mapping.select_next_item(),
-		["<C-l>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-	}),
-	experimental = {
-		ghost_text = true,
 	},
 })
 

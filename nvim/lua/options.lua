@@ -1,11 +1,11 @@
 vim.opt.number = true
 vim.opt.autoindent = true
-vim.opt.tabstop = 3
+vim.opt.tabstop = 2
 vim.opt.shiftwidth = 3
 vim.opt.mouse = "a"
 vim.opt.splitright = true
 vim.opt.completeopt = "menuone,noinsert"
-vim.opt.pumblend = 5
+vim.opt.pumblend = 20
 vim.opt.cursorline = true
 
 require("mason").setup({
@@ -103,7 +103,7 @@ require("format-on-save").setup({
 
 require("image_preview").setup()
 require("link-visitor").setup({
-	open_cmd = nil,
+	open_cmd = "xdg-open",
 	--[[ cmd to open url
     defaults:
     win or wsl: cmd.exe /c start
@@ -116,6 +116,9 @@ require("link-visitor").setup({
 })
 
 require("neo-tree").setup({
+	window = {
+		width = 25,
+	},
 	filesystem = {
 		window = {
 			mappings = {
