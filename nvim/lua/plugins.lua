@@ -32,6 +32,7 @@ require("packer").startup(function()
 	use("nvim-lualine/lualine.nvim")
 	use("adelarsq/image_preview.nvim")
 	use("xiyaowong/link-visitor.nvim")
+	use("mfussenegger/nvim-jdtls")
 	opt = true
 	use({
 		"akinsho/toggleterm.nvim",

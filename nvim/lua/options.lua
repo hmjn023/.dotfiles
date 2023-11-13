@@ -98,6 +98,8 @@ require("format-on-save").setup({
 		python = formatters.black,
 		json = formatters.jq,
 		c = formatters.lsp,
+		latex = formatters.latexindent,
+		kotlin = formatters.lsp,
 	},
 })
 
@@ -133,5 +135,13 @@ require("neo-tree").setup({
 				end
 			end,
 		},
+	},
+})
+
+require("jdtls").start_or_attach({
+	cmd = {
+		"java",
+		"-jar",
+		"/home/hmjn/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar",
 	},
 })
