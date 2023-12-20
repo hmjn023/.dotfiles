@@ -1,7 +1,7 @@
 vim.opt.number = true
 vim.opt.autoindent = true
 vim.opt.tabstop = 2
-vim.opt.shiftwidth = 3
+vim.opt.shiftwidth = 2
 vim.opt.mouse = "a"
 vim.opt.splitright = true
 vim.opt.completeopt = "menuone,noinsert"

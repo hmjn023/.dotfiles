@@ -7,3 +7,6 @@
 [submodule "zsh-romaji-complete"]
 	path = zsh-romaji-complete
 	url = https://github.com/aoyama-val/zsh-romaji-complete
+[submodule "nvim/pack/packer/start/nvim/pack/packer/start"]
+	path = nvim/pack/packer/start/nvim/pack/packer/start
+	url = https://github.com/wbthomason/packer.nvim.git
