@@ -1,9 +1,11 @@
 sway
+hyprland-nvidia
 xorg-xwayland
 swaybg
 qt6-wayland
 kitty
-fcitx5-mozc
+wezterm
+fcitx5-mozc-ut
 fcitx5-configtool
 fcitx5-qt
 fcitx5-gtk
