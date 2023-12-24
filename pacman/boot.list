@@ -1,0 +1,15 @@
+base
+linux-zen
+linux-firmware
+linux-zen-headers
+dhcpcd
+f2fs-tools
+man-db
+man-pages
+texinfo
+sof-firmware
+git
+base-devel
+rust-up
+vim
+nvim
