@@ -138,10 +138,10 @@ require("neo-tree").setup({
 	},
 })
 
-require("jdtls").start_or_attach({
-	cmd = {
-		"java",
-		"-jar",
-		"/home/hmjn/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar",
-	},
-})
+--require("jdtls").start_or_attach({
+--	cmd = {
+--		"java",
+--		"-jar",
+--		"/home/hmjn/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar",
+--	},
+--})
