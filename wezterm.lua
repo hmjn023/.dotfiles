@@ -16,6 +16,7 @@ end
 --config.color_scheme = "AdventureTime"
 config.color_scheme = "Ayu Mirage"
 config.window_background_opacity = 0.7
+config.enable_wayland = false
 
 -- and finally, return the configuration to wezterm
 return config

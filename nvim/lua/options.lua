@@ -90,6 +90,7 @@ require("format-on-save").setup({
 	formatter_by_ft = {
 		css = formatters.prettierd,
 		html = formatters.prettierd,
+		--		tsx = formatters.rome,
 		javascript = formatters.lsp,
 		lua = formatters.stylua,
 		rust = formatters.lsp,
@@ -145,3 +146,9 @@ require("neo-tree").setup({
 --		"/home/hmjn/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar",
 --	},
 --})
+
+if vim.g.neovide then
+	vim.g.neovide_fullscreen = false
+	vim.g.neovide_input_ime = true
+	vim.g.neovide_transparency = 0.8
+end

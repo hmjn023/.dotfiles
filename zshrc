@@ -16,6 +16,7 @@ export PATH=$HOME/flutter/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 export ANDROID_HOME=$HOME/Android/Sdk
+export NDK_HOME=$ANDROID_HOME/ndk/26.3.11579264
 export CHROME_EXECUTABLE=$(which google-chrome-stable)
 export CARGO_HOME=$HOME/.cargo
 export PATH=$CARGO_HOME/bin:$PATH
