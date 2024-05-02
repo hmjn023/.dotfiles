@@ -1,3 +1,4 @@
 /ssh
 !/ssh/config
 nvim/plugin/
+nvim/lazy-lock.json
