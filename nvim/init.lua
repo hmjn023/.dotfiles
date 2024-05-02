@@ -46,6 +46,8 @@ require("lazy").setup({
 	"adelarsq/image_preview.nvim",
 	"xiyaowong/link-visitor.nvim",
 	"mfussenegger/nvim-jdtls",
+	"folke/noice.nvim",
+	"rcarriga/nvim-notify",
 	{
 		"akinsho/toggleterm.nvim",
 		config = function()
