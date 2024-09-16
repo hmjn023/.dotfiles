@@ -15,8 +15,10 @@ end
 -- For example, changing the color scheme:
 --config.color_scheme = "AdventureTime"
 config.color_scheme = "Ayu Mirage"
+config.font_size = 18.0
 config.window_background_opacity = 0.7
 config.enable_wayland = false
+--config.front_end = "WebGpu"
 
 -- and finally, return the configuration to wezterm
 return config

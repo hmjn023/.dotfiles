@@ -14,3 +14,9 @@ Host fukuoka
 	HostName fukuoka.j.kisarazu.ac.jp
 	User sdj23b11
 	#ProxyCommand quicssh-rs client quic://%h:%p
+
+Host server
+	HostName 192.168.1.100
+	User hmjn
+	Port 18440
+	IdentityFile ~/.ssh/server-desk
