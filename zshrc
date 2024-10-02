@@ -21,7 +21,7 @@ export CHROME_EXECUTABLE=$(which google-chrome-stable)
 export CARGO_HOME=$HOME/.cargo
 export PATH=$CARGO_HOME/bin:$PATH
 # ranger
-export PAGER=dolphin
+#export PAGER=dolphin
 export VISUAL=nvim
 export EDITOR=nvim
 
@@ -76,7 +76,7 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 bindkey "^I" menu-expand-or-complete
-#. $HOME/.dotfiles/zsh-romaji-complete/zsh-romaji-complete.plugin.zsh
+. $HOME/.dotfiles/zsh-romaji-complete/zsh-romaji-complete.plugin.zsh
 
 eval "$(zoxide init zsh)"
 eval "$(mcfly init zsh)"

@@ -57,12 +57,12 @@ cmp.setup({
 })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 require("lspconfig").pyright.setup({ capabilities = capabilities })
 require("lspconfig").gopls.setup({ capabilities = capabilities })
 require("lspconfig").clangd.setup({ capabilities = capabilities })
 require("lspconfig").kotlin_language_server.setup({ capabilities = capabilities })
 require("lspconfig").ltex.setup({ capabilities = capabilities })
-require("lspconfig").tsserver.setup({ capabilities = capabilities })
 require("lspconfig").taplo.setup({ capabilities = capabilities })
 require("lspconfig").zk.setup({ capabilities = capabilities })
 require("lspconfig").ts_ls.setup({ capabilities = capabilities })
@@ -71,6 +71,7 @@ require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
 require("lspconfig").texlab.setup({ capabilities = capabilities, filetypes = { "tex", "plaintex", "bib", "markdown" } })
 require("lspconfig").jdtls.setup({ capabilities = capabilities })
 require("lspconfig").intelephense.setup({})
+
 -- require'lspconfig'.omnisharp.setup{
 --	cmd = {"/home/hmjn/.local/share/nvim/mason/bin/omnisharp","-lsp"},
 --	enable_editorconfig_support = true,
