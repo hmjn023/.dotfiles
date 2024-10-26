@@ -76,7 +76,7 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 bindkey "^I" menu-expand-or-complete
-. $HOME/.dotfiles/zsh-romaji-complete/zsh-romaji-complete.plugin.zsh
+#. $HOME/.dotfiles/zsh-romaji-complete/zsh-romaji-complete.plugin.zsh
 
 eval "$(zoxide init zsh)"
 eval "$(mcfly init zsh)"

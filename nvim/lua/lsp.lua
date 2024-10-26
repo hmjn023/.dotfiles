@@ -71,6 +71,10 @@ require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
 require("lspconfig").texlab.setup({ capabilities = capabilities, filetypes = { "tex", "plaintex", "bib", "markdown" } })
 require("lspconfig").jdtls.setup({ capabilities = capabilities })
 require("lspconfig").intelephense.setup({})
+require("lspconfig").denols.setup({})
+vim.g.markdown_fenced_languages = {
+	"ts=typescript",
+}
 
 -- require'lspconfig'.omnisharp.setup{
 --	cmd = {"/home/hmjn/.local/share/nvim/mason/bin/omnisharp","-lsp"},
