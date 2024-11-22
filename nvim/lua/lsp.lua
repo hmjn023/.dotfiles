@@ -27,6 +27,7 @@ local on_attach = function(client, bufnr)
 	end, bufopts)
 end
 
+local luasnip = require("luasnip")
 local cmp = require("cmp")
 cmp.setup({
 	snippet = {
@@ -44,6 +45,42 @@ cmp.setup({
 		{ name = "cmdline" },
 		{ name = "git" },
 	},
+	mapping = {
+		["<CR>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				if luasnip.expandable() then
+					luasnip.expand()
+				else
+					cmp.confirm({
+						select = true,
+					})
+				end
+			else
+				fallback()
+			end
+		end),
+
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.locally_jumpable(1) then
+				luasnip.jump(1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+	},
+	--[[
 	mapping = cmp.mapping.preset.insert({
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-n>"] = cmp.mapping.select_next_item(),
@@ -51,6 +88,7 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	}),
+	]]
 	experimental = {
 		ghost_text = true,
 	},
@@ -71,22 +109,25 @@ require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
 require("lspconfig").texlab.setup({ capabilities = capabilities, filetypes = { "tex", "plaintex", "bib", "markdown" } })
 require("lspconfig").jdtls.setup({ capabilities = capabilities })
 require("lspconfig").intelephense.setup({})
-require("lspconfig").denols.setup({})
+require("lspconfig").denols.setup({ capabilities = capabilities })
 vim.g.markdown_fenced_languages = {
 	"ts=typescript",
 }
 
--- require'lspconfig'.omnisharp.setup{
---	cmd = {"/home/hmjn/.local/share/nvim/mason/bin/omnisharp","-lsp"},
---	enable_editorconfig_support = true,
---   enable_ms_build_load_projects_on_demand = false,
---   enable_roslyn_analyzers = false,
---   organize_imports_on_format = false,
---   enable_import_completion = false,
---   sdk_include_prereleases = true,
---   analyze_open_documents_only = false,
---	on_attach = on_attach,
---}
+--[[
+require("lspconfig").omnisharp.setup({
+	cmd = { "/home/hmjn/.local/share/nvim/mason/bin/omnisharp", "-lsp" },
+	enable_editorconfig_support = true,
+	enable_ms_build_load_projects_on_demand = false,
+	enable_roslyn_analyzers = false,
+	organize_imports_on_format = false,
+	enable_import_completion = false,
+	sdk_include_prereleases = true,
+	analyze_open_documents_only = false,
+	on_attach = on_attach,
+})
+]]
+
 require("lspconfig").rust_analyzer.setup({
 	--on_attach = on_attach,
 	settings = {
@@ -117,6 +158,35 @@ require("lspconfig").lua_ls.setup({
 		},
 	},
 })
+
+--[[
+require("lspconfig").emmet_ls.setup({
+	-- on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = {
+		"css",
+		"eruby",
+		"html",
+		"javascript",
+		"javascriptreact",
+		"less",
+		"sass",
+		"scss",
+		"svelte",
+		"pug",
+		"typescriptreact",
+		"vue",
+	},
+	init_options = {
+		html = {
+			options = {
+				-- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+				["bem.enabled"] = true,
+			},
+		},
+	},
+})
+]]
 
 local gid = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
 vim.api.nvim_create_autocmd("CursorHold", {

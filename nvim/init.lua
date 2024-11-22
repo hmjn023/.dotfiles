@@ -48,6 +48,8 @@ require("lazy").setup({
 	"mfussenegger/nvim-jdtls",
 	"folke/noice.nvim",
 	"rcarriga/nvim-notify",
+	"solidjs-community/solid-snippets",
+	"aca/emmet-ls",
 	{
 		"akinsho/toggleterm.nvim",
 		config = function()
@@ -78,6 +80,16 @@ require("lazy").setup({
 		"iamcco/markdown-preview.nvim",
 		config = function()
 			vim.fn["mkdp#util#install"]()
+		end,
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- install jsregexp (optional!).
+		build = "make install_jsregexp",
+		config = function()
+			require("luasnip.loaders.from_lua").load()
 		end,
 	},
 })
