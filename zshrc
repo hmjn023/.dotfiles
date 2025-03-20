@@ -24,6 +24,7 @@ export PATH=$CARGO_HOME/bin:$PATH
 #export PAGER=dolphin
 export VISUAL=nvim
 export EDITOR=nvim
+export BROWSER='/usr/bin/google-chrome-stable'
 
 export MAKEFLAGS="-j $(nproc --all)"
 export VCPKG_ROOT=/opt/vcpkg

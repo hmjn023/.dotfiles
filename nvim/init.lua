@@ -29,6 +29,7 @@ require("lazy").setup({
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
+	"hrsh7th/cmp-vsnip",
 	"hrsh7th/vim-vsnip",
 	"nvim-lua/popup.nvim",
 	"nvim-lua/plenary.nvim",
@@ -60,7 +61,7 @@ require("lazy").setup({
 		"nvim-neo-tree/neo-tree.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"kyazdani42/nvim-web-devicons",
+			{ "kyazdani42/nvim-web-devicons", commit = "37334ad" },
 			"MunifTanjim/nui.nvim",
 		},
 	},
