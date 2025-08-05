@@ -40,8 +40,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)
 
 # wallpaper
 output eDP-1 bg /home/hmjn/Pictures/paper.jpg  fill
-output  DP-1 bg /home/hmjn/Pictures/paper2.jpg fill
-output  DP-3 bg /home/hmjn/Pictures/paper2.jpg fill
+#output  DP-1 bg /home/hmjn/Pictures/paper2.jpg fill
+#output  DP-3 bg /home/hmjn/Pictures/paper2.jpg fill
 # output * bg /home/hmjn/Downloads/portalparrot.gif fill
 
 
