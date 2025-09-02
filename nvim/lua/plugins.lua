@@ -1,75 +1,71 @@
-vim.cmd([[packadd packer.nvim]])
+-- lazy.nvim プラグイン管理
 
-require("packer").startup(function()
-	use("wbthomason/packer.nvim")
-	use("ryanoasis/vim-devicons")
-	use("tpope/vim-commentary")
-	use("preservim/nerdtree")
-	use("EdenEast/nightfox.nvim")
-	use("neovim/nvim-lspconfig")
-	use("ray-x/lsp_signature.nvim")
-	use("williamboman/mason.nvim")
-	use("williamboman/mason-lspconfig.nvim")
-	use("onsails/lspkind.nvim")
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/vim-vsnip")
-	use("nvim-lua/popup.nvim")
-	use("nvim-lua/plenary.nvim")
-	use("nvim-telescope/telescope.nvim")
-	tag = "0.1.0"
-	use("nvim-telescope/telescope-frecency.nvim")
-	use("nvim-telescope/telescope-media-files.nvim")
-	use("GustavoKatel/sidebar.nvim")
-	use("goolord/alpha-nvim")
-	use("terryma/vim-multiple-cursors")
-	use("windwp/nvim-autopairs")
-	use("windwp/nvim-ts-autotag")
-	use("nvim-treesitter/nvim-treesitter")
-	use("elentok/format-on-save.nvim")
-	use("nvim-lualine/lualine.nvim")
-	use("adelarsq/image_preview.nvim")
-	use("xiyaowong/link-visitor.nvim")
-	use("mfussenegger/nvim-jdtls")
-	opt = true
-	use({
-		"akinsho/toggleterm.nvim",
-		tag = "*",
-		config = function()
-			require("toggleterm").setup()
-		end,
-	})
-
-	vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-	use({
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
-		},
-	})
-	use({
-		"andymass/vim-matchup",
-		setup = function()
-			vim.g.matchup_matchparen_offscreen = { method = "popup" }
-		end,
-	})
-	use({
-		"stevearc/aerial.nvim",
-		config = function()
-			require("aerial").setup()
-		end,
-	})
-	use({
-		"iamcco/markdown-preview.nvim",
-		run = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-	})
-end)
-
-vim.cmd("colorscheme nightfox")
+return {
+  { "ryanoasis/vim-devicons" },
+  { "tpope/vim-commentary" },
+  { "preservim/nerdtree" },
+  { "EdenEast/nightfox.nvim" },
+  { "neovim/nvim-lspconfig" },
+  { "ray-x/lsp_signature.nvim" },
+  { "williamboman/mason.nvim" },
+  { "williamboman/mason-lspconfig.nvim" },
+  { "onsails/lspkind.nvim" },
+  { "hrsh7th/nvim-cmp" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/vim-vsnip" },
+  { "nvim-lua/popup.nvim" },
+  { "nvim-lua/plenary.nvim" },
+  { "nvim-telescope/telescope.nvim", version = "0.1.0" },
+  { "nvim-telescope/telescope-frecency.nvim" },
+  { "nvim-telescope/telescope-media-files.nvim" },
+  { "GustavoKatel/sidebar.nvim" },
+  { "goolord/alpha-nvim" },
+  { "terryma/vim-multiple-cursors" },
+  { "windwp/nvim-autopairs" },
+  { "windwp/nvim-ts-autotag" },
+  { "nvim-treesitter/nvim-treesitter" },
+  { "elentok/format-on-save.nvim" },
+  { "nvim-lualine/lualine.nvim" },
+  { "adelarsq/image_preview.nvim" },
+  { "xiyaowong/link-visitor.nvim" },
+  { "mfussenegger/nvim-jdtls", lazy = true },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = function()
+      require("toggleterm").setup()
+    end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+    init = function()
+      vim.g.neo_tree_remove_legacy_commands = 1
+    end,
+  },
+  {
+    "andymass/vim-matchup",
+    init = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end,
+  },
+  {
+    "stevearc/aerial.nvim",
+    config = function()
+      require("aerial").setup()
+    end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
+}
