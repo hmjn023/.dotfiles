@@ -56,34 +56,125 @@ cmp.setup({
 		ghost_text = true,
 	},
 })
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local lspconfig = require("lspconfig")
 
-lspconfig.pyright.setup({ capabilities = capabilities })
-lspconfig.gopls.setup({ capabilities = capabilities })
-lspconfig.clangd.setup({ capabilities = capabilities })
-lspconfig.kotlin_language_server.setup({ capabilities = capabilities })
-lspconfig.ltex.setup({ capabilities = capabilities })
-lspconfig.taplo.setup({ capabilities = capabilities })
-lspconfig.zk.setup({ capabilities = capabilities })
+-- Helper function to find root directory
+local function find_root(patterns)
+	return function(fname)
+		return vim.fs.root(fname, patterns)
+	end
+end
 
-lspconfig.ts_ls.setup({ capabilities = capabilities })
-lspconfig.cssls.setup({ capabilities = capabilities })
-lspconfig.tailwindcss.setup({ capabilities = capabilities, flags = { debounce_text_changes = 150 } })
-lspconfig.texlab.setup({ capabilities = capabilities, filetypes = { "tex", "plaintex", "bib", "markdown" } })
-lspconfig.jdtls.setup({ capabilities = capabilities })
--- lspconfig.denols.setup({ capabilities = capabilities })
-vim.g.markdown_fenced_languages = {
-	"ts=typescript",
+-- NOTE: This file uses the new vim.lsp.config API (Neovim 0.11+)
+-- Configure LSP servers using vim.lsp.config instead of require('lspconfig')
+
+vim.lsp.config.pyright = {
+	cmd = { "pyright-langserver", "--stdio" },
+	filetypes = { "python" },
+	root_dir = find_root({ "pyproject.toml", "setup.py", "requirements.txt", ".git" }),
+	capabilities = capabilities,
 }
-lspconfig.rust_analyzer.setup({
+
+vim.lsp.config.gopls = {
+	cmd = { "gopls" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	root_dir = find_root({ "go.mod", "go.work", ".git" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.clangd = {
+	cmd = { "clangd" },
+	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+	root_dir = find_root({ "compile_commands.json", ".git" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.kotlin_language_server = {
+	cmd = { "kotlin-language-server" },
+	filetypes = { "kotlin" },
+	root_dir = find_root({ "settings.gradle", "build.gradle", ".git" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.ltex = {
+	cmd = { "ltex-ls" },
+	filetypes = { "tex", "bib", "markdown", "org", "rst" },
+	root_dir = find_root({ ".git" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.taplo = {
+	cmd = { "taplo", "lsp", "stdio" },
+	filetypes = { "toml" },
+	root_dir = find_root({ ".git" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.zk = {
+	cmd = { "zk", "lsp" },
+	filetypes = { "markdown" },
+	root_dir = find_root({ ".zk" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.ts_ls = {
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	root_dir = find_root({ "package.json", "tsconfig.json", "jsconfig.json", ".git" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.cssls = {
+	cmd = { "vscode-css-language-server", "--stdio" },
+	filetypes = { "css", "scss", "less" },
+	root_dir = find_root({ "package.json", ".git" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.tailwindcss = {
+	cmd = { "tailwindcss-language-server", "--stdio" },
+	filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+	root_dir = find_root({ "tailwind.config.js", "tailwind.config.ts", ".git" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.texlab = {
+	cmd = { "texlab" },
+	filetypes = { "tex", "plaintex", "bib", "markdown" },
+	root_dir = find_root({ ".git" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.jdtls = {
+	cmd = { "jdtls" },
+	filetypes = { "java" },
+	root_dir = find_root({ "pom.xml", "build.gradle", ".git" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.rust_analyzer = {
+	cmd = { "rust-analyzer" },
+	filetypes = { "rust" },
+	root_dir = find_root({ "Cargo.toml", ".git" }),
+	capabilities = capabilities,
 	settings = {
 		["rust-analyzer"] = {},
 	},
-})
-lspconfig.html.setup({})
+}
 
-lspconfig.lua_ls.setup({
+vim.lsp.config.html = {
+	cmd = { "vscode-html-language-server", "--stdio" },
+	filetypes = { "html" },
+	root_dir = find_root({ "package.json", ".git" }),
+	capabilities = capabilities,
+}
+
+vim.lsp.config.lua_ls = {
+	cmd = { "lua-language-server" },
+	filetypes = { "lua" },
+	root_dir = find_root({ ".luarc.json", ".luarc.jsonc", ".git" }),
+	capabilities = capabilities,
 	settings = {
 		Lua = {
 			runtime = {
@@ -94,12 +185,32 @@ lspconfig.lua_ls.setup({
 			},
 		},
 	},
-})
+}
+
+-- Enable all configured servers
+local servers = {
+	"pyright", "gopls", "clangd", "kotlin_language_server",
+	"ltex", "taplo", "zk", "ts_ls", "cssls", "tailwindcss",
+	"texlab", "jdtls", "rust_analyzer", "html", "lua_ls"
+}
+
+for _, server_name in ipairs(servers) do
+	vim.lsp.enable(server_name)
+end
+
+-- Setup markdown fenced languages
+vim.g.markdown_fenced_languages = {
+	"ts=typescript",
+	"js=javascript",
+	"py=python",
+	"lua=lua",
+}
 
 --[[
-lspconfig.emmet_ls.setup({
-	-- on_attach = on_attach,
-	capabilities = capabilities,
+-- Emmet configuration (commented out)
+-- To enable, uncomment and configure appropriately using vim.lsp.config.emmet_ls
+vim.lsp.config.emmet_ls = {
+	cmd = { "emmet-ls", "--stdio" },
 	filetypes = {
 		"css",
 		"eruby",
@@ -114,6 +225,7 @@ lspconfig.emmet_ls.setup({
 		"typescriptreact",
 		"vue",
 	},
+	capabilities = capabilities,
 	init_options = {
 		html = {
 			options = {
@@ -122,7 +234,8 @@ lspconfig.emmet_ls.setup({
 			},
 		},
 	},
-})
+}
+vim.lsp.enable("emmet_ls")
 ]]
 local gid = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
 vim.api.nvim_create_autocmd("CursorHold", {
