@@ -22,5 +22,4 @@ Host fukuoka
 Host server
 	HostName 192.168.1.100
 	User hmjn
-	Port 18440
-	IdentityFile ~/.ssh/server-desk
+	Port 22

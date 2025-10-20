@@ -19,6 +19,13 @@ config.font_size = 24.0
 config.window_background_opacity = 0.7
 config.enable_wayland = true
 config.front_end = "WebGpu"
+config.keys = {
+	{
+		key = "Enter",
+		mods = "SHIFT",
+		action = wezterm.action.SendString("\n"),
+	},
+}
 
 -- and finally, return the configuration to wezterm
 return config
