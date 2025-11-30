@@ -29,10 +29,24 @@ export VCPKG_DOWNLOADS=/var/cache/vcpkg
 
 # sheldon
 # Load sheldon plugins (modifies fpath) before compinit
+
+# Temporary compdef shim to queue commands until compinit is run
+typeset -a _compdef_queue
+compdef() {
+  _compdef_queue+=("${(j: :)@}")
+}
+
 eval "$(sheldon source)"
 
-# completion
+# Restore compdef and load completion system
+unset -f compdef
 autoload -Uz compinit && compinit
+
+# Replay queued compdef calls
+for cmd in "${_compdef_queue[@]}"; do
+  eval "compdef $cmd"
+done
+unset _compdef_queue
 
 # aliases
 alias vi=nvim
