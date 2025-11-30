@@ -6,3 +6,6 @@ github = "zsh-users/zsh-autosuggestions"
 [plugins.zsh-romaji-complete]
 github = "aoyama-val/zsh-romaji-complete"
 apply = ["fpath", "source"]
+
+[plugins.ni]
+github = "azu/ni.zsh"
