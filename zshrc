@@ -1,5 +1,3 @@
-autoload -Uz compinit && compinit
-
 # variables
 ## history
 HISTFILE=$HOME/.history
@@ -28,6 +26,14 @@ export BROWSER='/usr/bin/google-chrome-stable'
 export MAKEFLAGS="-j $(nproc --all)"
 export VCPKG_ROOT=/opt/vcpkg
 export VCPKG_DOWNLOADS=/var/cache/vcpkg
+
+# sheldon
+# Load sheldon plugins (modifies fpath) before compinit
+eval "$(sheldon source)"
+
+# completion
+autoload -Uz compinit && compinit
+
 # aliases
 alias vi=nvim
 alias cd=z
@@ -40,9 +46,6 @@ alias lh="ls -lh"
 
 # key settings
 source $HOME/.dotfiles/zsh/keys.zsh
-#. $HOME/.dotfiles/zsh-romaji-complete/zsh-romaji-complete.plugin.zsh
-source $HOME/.dotfiles/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 
 source $HOME/.config/broot/launcher/bash/br
 # mise configuration

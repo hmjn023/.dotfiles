@@ -1,12 +1,6 @@
 [submodule "kitty/kitty-themes"]
 	path = kitty/kitty-themes
 	url = https://github.com/dexpota/kitty-themes
-[submodule "zsh-autosuggestions"]
-	path = zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
-[submodule "zsh-romaji-complete"]
-	path = zsh-romaji-complete
-	url = https://github.com/aoyama-val/zsh-romaji-complete
 [submodule "nvim/pack/packer/start/packer.nvim"]
 	path = nvim/pack/packer/start/packer.nvim
 	url = https://github.com/wbthomason/packer.nvim.git

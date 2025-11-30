@@ -1,0 +1,8 @@
+shell = "zsh"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.zsh-romaji-complete]
+github = "aoyama-val/zsh-romaji-complete"
+apply = ["fpath", "source"]
